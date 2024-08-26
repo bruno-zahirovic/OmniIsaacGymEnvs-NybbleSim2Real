@@ -35,6 +35,172 @@ from rl_games.algos_torch import torch_ext
 from rl_games.common import env_configurations, vecenv
 from rl_games.common.algo_observer import AlgoObserver
 
+import gymnasium as gym
+
+
+def import_tasks():
+    from omniisaacgymenvs.tasks.allegro_hand import AllegroHandTask
+    from omniisaacgymenvs.tasks.ant import AntLocomotionTask
+    from omniisaacgymenvs.tasks.anymal import AnymalTask
+    from omniisaacgymenvs.tasks.nybble import NybbleTask
+    from omniisaacgymenvs.tasks.anymal_terrain import AnymalTerrainTask
+    from omniisaacgymenvs.tasks.ball_balance import BallBalanceTask
+    from omniisaacgymenvs.tasks.cartpole import CartpoleTask
+    from omniisaacgymenvs.tasks.cartpole_camera import CartpoleCameraTask
+    from omniisaacgymenvs.tasks.crazyflie import CrazyflieTask
+    from omniisaacgymenvs.tasks.factory.factory_task_nut_bolt_pick import FactoryTaskNutBoltPick
+    from omniisaacgymenvs.tasks.factory.factory_task_nut_bolt_place import FactoryTaskNutBoltPlace
+    from omniisaacgymenvs.tasks.factory.factory_task_nut_bolt_screw import FactoryTaskNutBoltScrew
+    from omniisaacgymenvs.tasks.franka_cabinet import FrankaCabinetTask
+    from omniisaacgymenvs.tasks.franka_deformable import FrankaDeformableTask
+    from omniisaacgymenvs.tasks.humanoid import HumanoidLocomotionTask
+    from omniisaacgymenvs.tasks.ingenuity import IngenuityTask
+    from omniisaacgymenvs.tasks.quadcopter import QuadcopterTask
+    from omniisaacgymenvs.tasks.shadow_hand import ShadowHandTask
+
+    from omniisaacgymenvs.tasks.warp.ant import AntLocomotionTask as AntLocomotionTaskWarp
+    from omniisaacgymenvs.tasks.warp.cartpole import CartpoleTask as CartpoleTaskWarp
+    from omniisaacgymenvs.tasks.warp.humanoid import HumanoidLocomotionTask as HumanoidLocomotionTaskWarp
+
+    # Mappings from strings to environments
+    task_map = {
+        "AllegroHand": AllegroHandTask,
+        "Ant": AntLocomotionTask,
+        "Anymal": AnymalTask,
+        "Nybble": NybbleTask,
+        "AnymalTerrain": AnymalTerrainTask,
+        "BallBalance": BallBalanceTask,
+        "Cartpole": CartpoleTask,
+        "CartpoleCamera": CartpoleCameraTask,
+        "FactoryTaskNutBoltPick": FactoryTaskNutBoltPick,
+        "FactoryTaskNutBoltPlace": FactoryTaskNutBoltPlace,
+        "FactoryTaskNutBoltScrew": FactoryTaskNutBoltScrew,
+        "FrankaCabinet": FrankaCabinetTask,
+        "FrankaDeformable": FrankaDeformableTask,
+        "Humanoid": HumanoidLocomotionTask,
+        "Ingenuity": IngenuityTask,
+        "Quadcopter": QuadcopterTask,
+        "Crazyflie": CrazyflieTask,
+        "ShadowHand": ShadowHandTask,
+        "ShadowHandOpenAI_FF": ShadowHandTask,
+        "ShadowHandOpenAI_LSTM": ShadowHandTask,
+    }
+
+    task_map_warp = {
+        "Cartpole": CartpoleTaskWarp,
+        "Ant":AntLocomotionTaskWarp,
+        "Humanoid": HumanoidLocomotionTaskWarp
+    }
+
+    return task_map, task_map_warp
+
+
+def initialize_task(config, env, init_sim=True):
+    from omniisaacgymenvs.utils.config_utils.sim_config import SimConfig
+
+    sim_config = SimConfig(config)
+    task_map, task_map_warp = import_tasks()
+
+    cfg = sim_config.config
+    if cfg["warp"]:
+        task_map = task_map_warp
+
+    task = task_map[cfg["task_name"]](
+        name=cfg["task_name"], sim_config=sim_config, env=env
+    )
+
+    backend = "warp" if cfg["warp"] else "torch"
+
+    rendering_dt = sim_config.get_physics_params()["rendering_dt"]
+
+    env.set_task(
+        task=task,
+        sim_params=sim_config.get_physics_params(),
+        backend=backend,
+        init_sim=init_sim,
+        rendering_dt=rendering_dt,
+    )
+
+    return task
+
+
+
+
+def get_rlgames_env_creator(
+        # used to create the vec task
+        seed: int,
+        task_config: dict,
+        task_name: str,
+        sim_device: str,
+        rl_device: str,
+        graphics_device_id: int,
+        headless: bool,
+        environment: gym.Env,
+        # used to handle multi-gpu case
+        multi_gpu: bool = False,
+        post_create_hook: Callable = None,
+        virtual_screen_capture: bool = False,
+        force_render: bool = False,
+):
+    """Parses the configuration parameters for the environment task and creates a VecTask
+
+    Args:
+        task_config: environment configuration.
+        task_name: Name of the task, used to evaluate based on the imported name (eg 'Trifinger')
+        sim_device: The type of env device, eg 'cuda:0'
+        rl_device: Device that RL will be done on, eg 'cuda:0'
+        graphics_device_id: Graphics device ID.
+        headless: Whether to run in headless mode.
+        multi_gpu: Whether to use multi gpu
+        post_create_hook: Hooks to be called after environment creation.
+            [Needed to setup WandB only for one of the RL Games instances when doing multiple GPUs]
+        virtual_screen_capture: Set to True to allow the users get captured screen in RGB array via `env.render(mode='rgb_array')`. 
+        force_render: Set to True to always force rendering in the steps (if the `control_freq_inv` is greater than 1 we suggest stting this arg to True)
+    Returns:
+        A VecTaskPython object.
+    """
+    def create_rlgpu_env():
+        """
+        Creates the task from configurations and wraps it using RL-games wrappers if required.
+        """
+        if multi_gpu:
+
+            local_rank = int(os.getenv("LOCAL_RANK", "0"))
+            global_rank = int(os.getenv("RANK", "0"))
+
+            # local rank of the GPU in a node
+            local_rank = int(os.getenv("LOCAL_RANK", "0"))
+            # global rank of the GPU
+            global_rank = int(os.getenv("RANK", "0"))
+            # total number of GPUs across all nodes
+            world_size = int(os.getenv("WORLD_SIZE", "1"))
+
+            print(f"global_rank = {global_rank} local_rank = {local_rank} world_size = {world_size}")
+
+            _sim_device = f'cuda:{local_rank}'
+            _rl_device = f'cuda:{local_rank}'
+
+            task_config['rank'] = local_rank
+            task_config['rl_device'] = _rl_device
+        else:
+            _sim_device = sim_device
+            _rl_device = rl_device
+
+        # create native task and pass custom config
+
+        task_map, task_map_wrap = import_tasks()
+
+        env = task_map[task_name](
+            name=task_name,
+            sim_config=task_config,
+            env=environment
+        )
+
+        if post_create_hook is not None:
+            post_create_hook()
+
+        return env
+    return create_rlgpu_env
 
 class RLGPUAlgoObserver(AlgoObserver):
     """Allows us to log stats from the env along with the algorithm running stats."""
