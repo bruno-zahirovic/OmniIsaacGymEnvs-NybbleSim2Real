@@ -1,0 +1,33 @@
+!SESSION 2024-08-26 22:30:00.721 -----------------------------------------------
+eclipse.buildId=Version 1.15.1
+java.version=17.0.8.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data C:\Workspace\Diplomski - backup\OmniIsaacGymEnvs-NybbleSim2Real\EmbeddedProject
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-08-26 22:30:05.817
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-08-26 22:30:05.825
+!MESSAGE Log4j2 initialized with config file C:\Workspace\Diplomski - backup\OmniIsaacGymEnvs-NybbleSim2Real\EmbeddedProject\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-08-26 22:30:08.572
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2024-08-26 22:30:19.407 -----------------------------------------------
+eclipse.buildId=Version 1.15.1
+java.version=17.0.8.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data C:\Workspace\Diplomski - backup\OmniIsaacGymEnvs-NybbleSim2Real\EmbeddedProject
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-08-26 22:30:23.356
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-08-26 22:30:23.357
+!MESSAGE Log4j2 initialized with config file C:\Workspace\Diplomski - backup\OmniIsaacGymEnvs-NybbleSim2Real\EmbeddedProject\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-08-26 22:30:26.250
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-08-26 22:30:50.562
+!MESSAGE Indexed 'Nybble' (28 sources, 172 headers) in 5.49 sec: 20,111 declarations; 95,563 references; 3 unresolved inclusions; 46 syntax errors; 169 unresolved names (0.15%)

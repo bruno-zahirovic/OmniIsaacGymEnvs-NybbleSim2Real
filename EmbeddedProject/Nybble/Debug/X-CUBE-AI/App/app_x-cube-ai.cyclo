@@ -1,0 +1,4 @@
+../X-CUBE-AI/App/app_x-cube-ai.c:172:5:acquire_and_process_data	1
+../X-CUBE-AI/App/app_x-cube-ai.c:182:5:post_process	1
+../X-CUBE-AI/App/app_x-cube-ai.c:197:6:MX_X_CUBE_AI_Init	1
+../X-CUBE-AI/App/app_x-cube-ai.c:206:6:MX_X_CUBE_AI_Process	1

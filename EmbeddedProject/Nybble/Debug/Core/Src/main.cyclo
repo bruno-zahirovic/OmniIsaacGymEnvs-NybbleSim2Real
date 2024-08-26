@@ -1,0 +1,16 @@
+../Core/Src/main.c:723:13:SERVO_SetPosition	9
+../Core/Src/main.c:762:13:NYBBLE_SetPose	3
+../Core/Src/main.c:804:13:AI_PostProcessOutput	4
+../Core/Src/main.c:817:13:AI_CalculateServoTargets	5
+../Core/Src/main.c:680:13:MX_GPIO_Init	1
+../Core/Src/main.c:714:13:SERVO_Init	3
+../Core/Src/main.c:772:17:AI_Init	2
+../Core/Src/main.c:787:17:AI_Run	2
+../Core/Src/main.c:838:6:Error_Handler	1
+../Core/Src/main.c:408:13:MX_I2C1_Init	1
+../Core/Src/main.c:456:13:MX_TIM1_Init	1
+../Core/Src/main.c:574:13:MX_TIM3_Init	1
+../Core/Src/main.c:503:13:MX_TIM2_Init	1
+../Core/Src/main.c:358:6:SystemClock_Config	1
+../Core/Src/main.c:262:5:main	4
+../Core/Src/main.c:645:6:MX_USART2_UART_Init	1
