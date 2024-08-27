@@ -1,3 +1,38 @@
+# Petoi Nybble Added Support
+
+## Training
+
+After doing all the setup required by the OmniIsaacGymEnvs described below and checking out development branch of this repo, you can start training Nybble in Isaac Gym the same way you would any other example - simply call the _rlgames_train.py_ script from the _omniiisacgymenvs_ subdir and pass in the _task=Nybble_ as an argument, as you would for any other example.
+
+## Training Results
+
+The trained model looks something like this:
+
+![nybble_final](https://github.com/user-attachments/assets/a4fe860a-139f-41c5-9ef9-a264386431c6)
+
+# SIM2REAL
+
+## Tools
+
+STM32CUBE IDE and STM32CUBE MX with X-CUBE-AI addon
+pthToONNXConverter.py script (with flatten.py helper script) to convert .pth format of pytorch model to .onnx format suitable for X-CUBE-AI (modified version of @kevinh42 code from repo https://github.com/kevinh42/gym2real_isaacgym)
+
+## Robot Components
+STM32-NUCLEO-L476RG
+MG90S Servo motors - x8 necessary for movable joints, x11 necessary to complete the robot build (neck, tail and head servos not considered while training)
+Petoi Nybble 3D Printable files - by hackoholic on thingiverse (https://www.thingiverse.com/thing:4015171) whit some modified thigs for increased stability - all files in this repo
+
+## Transfer Results
+
+NOTE: Environment data is not collected at runtime because of cheap components which lack correct information - it's been taken from the simulator and stored in the micro as observation_data
+The results are a replay of 200 inputs to the neural network taken from simulation, but the inputs do get processed on the microcontroller and inference is ran at runtime.
+
+Real world transfer looks something like this:
+
+![nybble_transfered](https://github.com/user-attachments/assets/fabb87e6-ae89-437c-8f34-b6fe19b618a9)
+
+Reults aren't perfect but considering the hardware, it's better than expecetd!
+
 # Omniverse Isaac Gym Reinforcement Learning Environments for Isaac Sim
 
 ## About this repository
