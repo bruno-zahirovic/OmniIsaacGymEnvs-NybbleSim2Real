@@ -15,11 +15,14 @@ The trained model looks something like this:
 ## Tools
 
 STM32CUBE IDE and STM32CUBE MX with X-CUBE-AI addon
+
 pthToONNXConverter.py script (with flatten.py helper script) to convert .pth format of pytorch model to .onnx format suitable for X-CUBE-AI (modified version of @kevinh42 code from repo https://github.com/kevinh42/gym2real_isaacgym)
 
 ## Robot Components
 STM32-NUCLEO-L476RG
+
 MG90S Servo motors - x8 necessary for movable joints, x11 necessary to complete the robot build (neck, tail and head servos not considered while training)
+
 Petoi Nybble 3D Printable files - by hackoholic on thingiverse (https://www.thingiverse.com/thing:4015171) whit some modified thigs for increased stability - all files in this repo
 
 ## Transfer Results
