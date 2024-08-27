@@ -2,6 +2,10 @@
 
 Import of the Petoi Nybble robot was possible because of Petoi company itself, who gave me the permission to use their robot model and provided the description files necessary to import the Nybble cat into Isaac Sim and Isaac Gym. The description files can be found here: https://github.com/PetoiCamp/ros_opencat
 
+The Nybble description file comes in xacro format which is not compatible with Isaac Sim, so it's necessary to convert it to urdf before attempting creation of usd scene, with some extra modifications on the urdf afterwards. 
+
+The modified urdf file is provided in the extras subdir of this repo, as well as the xacro2urdf.py script (script source: https://docs.ros.org/en/diamondback/api/xacro/html/src_2xacro_8py_source.html).
+
 ## Training
 
 After doing all the setup required by the OmniIsaacGymEnvs described below and checking out development branch of this repo, you can start training Nybble in Isaac Gym the same way you would any other example - simply call the _rlgames_train.py_ script from the _omniiisacgymenvs_ subdir and pass in the _task=Nybble_ as an argument, as you would for any other example.
