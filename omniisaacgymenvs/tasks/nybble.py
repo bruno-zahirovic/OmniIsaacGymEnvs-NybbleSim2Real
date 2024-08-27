@@ -193,7 +193,7 @@ class NybbleTask(RLTask):
         )
         self.obs_buf[:] = obs
         #self.obs_buf[:]= 0
-        obsList = []
+        #obsList = []
 
         # self.observations_list.append(obs)
         # if self.PLOT:

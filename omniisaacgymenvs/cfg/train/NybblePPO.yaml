@@ -44,8 +44,11 @@ params:
     multi_gpu: ${....multi_gpu}
     ppo: True
     mixed_precision: True
-    normalize_input: False
-    normalize_value: False
+    #For SIM2REAL normalized inputs don't give exact same outputs as converted ONNX model
+    #Switch to normalize_input: False and normalize_value: False and get a good model
+    #for easier SIM2REAL transfer
+    normalize_input: True
+    normalize_value: True
     value_bootstrap: True
     num_actors: ${....task.env.numEnvs}
     reward_shaper:
