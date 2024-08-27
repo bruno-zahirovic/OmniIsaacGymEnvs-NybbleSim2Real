@@ -31,6 +31,8 @@ MG90S Servo motors - x8 necessary for movable joints, x11 necessary to complete 
 
 Petoi Nybble 3D Printable files - by hackoholic on thingiverse (https://www.thingiverse.com/thing:4015171) whit some modified thigs for increased stability - all files in this repo
 
+Circuit diagram of created protobard with pinouts is located at repo\extras subdir.
+
 ## Transfer Results
 
 NOTE: Environment data is not collected at runtime because of cheap components which lack correct information - it's been taken from the simulator and stored in the micro as observation_data
