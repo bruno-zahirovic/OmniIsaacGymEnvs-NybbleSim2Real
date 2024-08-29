@@ -35,15 +35,15 @@ Circuit diagram of created protobard with pinouts is located at repo\extras subd
 
 ## Transfer Results
 
-NOTE: Environment data is not collected at runtime because of cheap components which lack correct information - it's been taken from the simulator and stored in the micro as observation_data
+NOTE: Environment data is not collected at runtime because of cheap components which lack correct information - it's been taken from the simulator and stored in the micro as observation_data.
+
 The results are a replay of 200 inputs to the neural network taken from simulation, but the inputs do get processed on the microcontroller and inference is ran at runtime.
 
 Real world transfer looks something like this:
 
 ![nybble_transfered](https://github.com/user-attachments/assets/fca84696-0dc9-44d2-8db8-ebfc106f8867)
 
-
-Reults aren't perfect but considering the hardware, it's better than expecetd!
+Reults aren't perfect but considering the hardware, it's better than expecetd! The videos of the results, including different surfaces, are located in the _Results_ subdir of this repo.
 
 # Omniverse Isaac Gym Reinforcement Learning Environments for Isaac Sim
 
