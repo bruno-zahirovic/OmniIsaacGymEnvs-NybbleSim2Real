@@ -40,7 +40,8 @@ The results are a replay of 200 inputs to the neural network taken from simulati
 
 Real world transfer looks something like this:
 
-![nybble_transfered](https://github.com/user-attachments/assets/fabb87e6-ae89-437c-8f34-b6fe19b618a9)
+![nybble_transfered](https://github.com/user-attachments/assets/fca84696-0dc9-44d2-8db8-ebfc106f8867)
+
 
 Reults aren't perfect but considering the hardware, it's better than expecetd!
 
