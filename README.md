@@ -29,7 +29,7 @@ STM32-NUCLEO-L476RG
 
 MG90S Servo motors - x8 necessary for movable joints, x11 necessary to complete the robot build (neck, tail and head servos not considered while training)
 
-Petoi Nybble 3D Printable files - by hackoholic on thingiverse (https://www.thingiverse.com/thing:4015171) whit some modified thigs for increased stability - all files in this repo
+Petoi Nybble 3D Printable files - by hackoholic on thingiverse (https://www.thingiverse.com/thing:4015171) with some modified thighs for increased stability - all files in this repo
 
 Circuit diagram of created protobard with pinouts is located at repo\extras subdir.
 
