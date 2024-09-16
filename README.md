@@ -8,7 +8,7 @@ The modified urdf file is provided in the extras subdir of this repo, as well as
 
 ## Training
 
-After doing all the setup required by the OmniIsaacGymEnvs described below and checking out development branch of this repo, you can start training Nybble in Isaac Gym the same way you would any other example - simply call the _rlgames_train.py_ script from the _omniiisacgymenvs_ subdir and pass in the _task=Nybble_ as an argument, as you would for any other example.
+After doing all the setup required by the OmniIsaacGymEnvs (this commit was tested and works with Isaac Sim 2023.1 version) described below and checking out development branch of this repo, you can start training Nybble in Isaac Gym the same way you would any other example - simply call the _rlgames_train.py_ script from the _omniiisacgymenvs_ subdir and pass in the _task=Nybble_ as an argument, as you would for any other example.
 
 ## Training Results
 
