@@ -43,7 +43,7 @@ Real world transfer looks something like this:
 
 ![nybble_transfered](https://github.com/user-attachments/assets/fca84696-0dc9-44d2-8db8-ebfc106f8867)
 
-Reults aren't perfect but considering the hardware, it's better than expecetd! The videos of the results, including different surfaces, are located in the _Results_ subdir of this repo.
+Results aren't perfect but considering the hardware, it's better than expecetd! The videos of the results, including different surfaces, are located in the _Results_ subdir of this repo.
 
 # Omniverse Isaac Gym Reinforcement Learning Environments for Isaac Sim
 
